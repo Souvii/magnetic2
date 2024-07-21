@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetic Nav Bar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .magnetic {
+            display: inline-block;
+            transition: transform 0.1s ease;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="flex justify-center bg-zinc-900 py-[4vh]">
+        <h1 class="magnetic nav-link text-white mr-[1vh]">Home</h1>
+        <h1 class="magnetic nav-link text-white  mr-[1vh]">About</h1>
+        <h1 class="magnetic nav-link text-white  mr-[1vh]">Services</h1>
+        <h1 class="magnetic nav-link text-white  mr-[1vh]">Contact</h1>
+    </nav>
+    <script>
+        function applyMagneticEffect(element) {
+            element.addEventListener("mousemove", (event) => {
+                let x = event.offsetX;
+                let y = event.offsetY;
+                let itemWidth =element.clientWidth;
+                let itemHeight = element.clientHeight;
+                let moveX = (x -itemWidth / 2) * 0.1;
+                let moveY = (y - itemHeight / 2) * 0.1;
+                element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+            element.addEventListener("mouseleave", () => {
+                element.style.transform = `translate(0, 0)`;
+            });
+        }
+        document.querySelectorAll('.magnetic').forEach(applyMagneticEffect);
+    </script>
+</body>
+</html>
